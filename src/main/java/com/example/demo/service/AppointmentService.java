@@ -4,7 +4,7 @@ import com.example.demo.repository.*;
 import lombok.AllArgsConstructor;
 
 import com.example.demo.entity.*;
-import java.util.List;
+
 import java.util.*;
 
 import org.springframework.stereotype.Service;
@@ -33,8 +33,16 @@ public class AppointmentService {
 	
 	public void addappointment(Appointment appointment)   
 	{  
+		Date reference_date = appointment.getDate();
+		Doctor reference_doctor = appointment.getDoctor();
+		long doctorid = reference_doctor.getId();
 		
-		appointmentRepository.save(appointment);  
+		Appointment reference_appointment = appointmentRepository.findOneByDateAndDoctorId(reference_date,doctorid);
+		System.out.println(reference_appointment);
+		 if (reference_appointment == null) {
+			 appointmentRepository.save(appointment);
+		}  
+		 else System.out.println("try another date");
 	}  
 	
 	public Appointment updateById(int id, Appointment newAppointment) {
