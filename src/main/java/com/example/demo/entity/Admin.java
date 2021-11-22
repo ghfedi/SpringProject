@@ -11,28 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="admin")
-public class Admin {
+public class Admin extends User{
 
-	 @Id
-	  	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long id;
+
 	 
 	 	private String firstName;
 
 	    private String lastName;
    
-	    @OneToOne(optional = false)
-	    @JoinColumn(name = "user_id", referencedColumnName = "id")
-	    private User user;
 	    
 	    public Admin() {}
-	    
-	    public long getId() {
-	        return id;
-	    }
-	    public void setId(long id) {
-	        this.id = id;
-	    }
+	
 
 	    public String getFirstName() {
 	        return firstName;
@@ -50,13 +39,7 @@ public class Admin {
 	        this.lastName = lastName;
 	    }
 	    
-	    public User getUser() {
-	        return user;
-	    }
-
-	    public void setUser(User user) {
-	        this.user = user;
-	    }
+	
 
 
 	    

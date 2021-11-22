@@ -4,7 +4,9 @@ import com.example.demo.repository.*;
 import lombok.AllArgsConstructor;
 
 import com.example.demo.entity.*;
+import com.example.demo.models.dto.AppointmentReservation;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import org.springframework.stereotype.Service;
@@ -31,16 +33,19 @@ public class AppointmentService {
 		return appointmentRepository.findAllByPatientIdOrderByDate(patientId);
 		}
 	
-	public void addappointment(Appointment appointment)   
+	public void addappointment(AppointmentReservation appointmentReservation)   
 	{  
-		Date reference_date = appointment.getDate();
-		Doctor reference_doctor = appointment.getDoctor();
-		long doctorid = reference_doctor.getId();
+		LocalDateTime reference_date = appointmentReservation.getDate();
+		long doctorid = appointmentReservation.getDoctorId();
 		
 		Appointment reference_appointment = appointmentRepository.findOneByDateAndDoctorId(reference_date,doctorid);
 		System.out.println(reference_appointment);
-		 if (reference_appointment == null) {
-			 appointmentRepository.save(appointment);
+		 if (reference_appointment != null) {
+			 Patient patient = new Patient();
+			 patient.setId(appointmentReservation.getPatientId());
+			 reference_appointment.setAppointmentType(appointmentReservation.getAppointmentType());
+			 reference_appointment.setPatient(patient);
+			 appointmentRepository.save(reference_appointment);
 		}  
 		 else System.out.println("try another date");
 	}  

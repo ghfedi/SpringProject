@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -6,11 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table (name="patients")
-public class Patient {
+public class Patient extends User{
 
-	 @Id
-	  	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long id;
 
 	    private String firstName;
 
@@ -18,30 +16,20 @@ public class Patient {
 
 	    private String telephoneNumber;
 
-	    private Date dateOfBirth;
+	    private LocalDate dateOfBirth;
 
 	    private Date dateOfEnrollment;
 
 	    private String gender;
 
 
-	    @OneToOne(optional = false)
-	    @JoinColumn(name = "user_id", referencedColumnName = "id")
-	    private User user;
+	 
 
 	    @ManyToOne
 	    @JoinColumn(name = "doctor_id")
 	    private Doctor doctor;
 
 	    public Patient() {
-	    }
-
-	    public long getId() {
-	        return id;
-	    }
-
-	    public void setId(long id) {
-	        this.id = id;
 	    }
 
 	    public String getFirstName() {
@@ -69,11 +57,11 @@ public class Patient {
 	        this.telephoneNumber = telephoneNumber;
 	    }
 
-	    public Date getDateOfBirth() {
+	    public LocalDate getDateOfBirth() {
 	        return dateOfBirth;
 	    }
 
-	    public void setDateOfBirth(Date dateOfBirth) {
+	    public void setDateOfBirth(LocalDate dateOfBirth) {
 	        this.dateOfBirth = dateOfBirth;
 	    }
 
@@ -94,13 +82,6 @@ public class Patient {
 	    }
 
 
-	    public User getUser() {
-	        return user;
-	    }
-
-	    public void setUser(User user) {
-	        this.user = user;
-	    }
 
 	    public Doctor getDoctor() {
 	        return doctor;

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-	Patient findOneByUserId(long userId);
+
 
     List<Patient> findAllByDoctorId(long doctorId);
     List<Patient> findAll();

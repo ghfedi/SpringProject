@@ -3,6 +3,8 @@ import com.example.demo.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +27,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     List<Appointment> findAllByDoctorIdOrderByDate(long doctorId);
 
 
-    Appointment findOneByDateAndDoctorId(Date date, long doctorId);
+    Appointment findOneByDateAndDoctorId(LocalDateTime reference_date, long doctorId);
 
 }

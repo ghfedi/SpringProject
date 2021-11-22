@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,10 +18,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "doctors")
-public class Doctor {
-	 @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private long id;
+public class Doctor extends User {
 
 	    private String firstName;
 
@@ -45,29 +43,21 @@ public class Doctor {
 
 	  
 
-
-
-	    @OneToOne(optional = false)
-	    @JoinColumn(name = "user_id", referencedColumnName = "id")
-	    private User user;
-
 	    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "doctor")
 	    private Set<Patient> patients;
 
 	    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "doctor")
 	    private Set<Appointment> appointments;
+	    
+	    @ManyToOne
+	    @JoinColumn(name = "secretaire_id")
+	    private Secretaire secretaire;
 
 	    public Doctor() {
 	        this.setPatients(new HashSet<>());
 	    }
 
-	    public long getId() {
-	        return id;
-	    }
 
-	    public void setId(long id) {
-	        this.id = id;
-	    }
 
 	    public String getFirstName() {
 	        return firstName;
@@ -146,15 +136,6 @@ public class Doctor {
 	    }
 
 
-
-
-	    public User getUser() {
-	        return user;
-	    }
-
-	    public void setUser(User user) {
-	        this.user = user;
-	    }
 
 	    public Set<Patient> getPatients() {
 	        return patients;

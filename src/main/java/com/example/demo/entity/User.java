@@ -8,6 +8,7 @@ import java.util.Set;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	
 	    @Id
@@ -23,7 +24,7 @@ public class User {
 	    private boolean isAccountNonExpired;
 	    private boolean isCredentialsNonExpired;
 	    private boolean isAccountNonLocked;
-	    private boolean isEnabled;
+	    private boolean enabled;
 
 	    @ManyToMany(fetch = FetchType.EAGER)
 	    @JoinTable(name = "users_roles",
@@ -59,7 +60,7 @@ public class User {
 
 	    
 	    public boolean isEnabled() {
-	        return isEnabled;
+	        return enabled;
 	    }
 
 	    public long getId() {
@@ -93,7 +94,7 @@ public class User {
 	    }
 
 	    public void setEnabled(boolean enabled) {
-	        isEnabled = enabled;
+	        this.enabled = enabled;
 	    }
 
 	    public void setAuthorities(Set<Role> authorities) {
