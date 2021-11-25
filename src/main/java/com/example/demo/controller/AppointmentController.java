@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import com.example.demo.entity.*;
+import com.example.demo.models.dto.AppointmentReservation;
 import com.example.demo.service.*;
 
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class AppointmentController {
     	return appointmentService.getAllAppointmentByPatient(patientId);
 }
     @PostMapping("/addapointment")  
-    private long saveAppointment(@RequestBody Appointment appointment)   
+    private long saveAppointment(@RequestBody AppointmentReservation appointment)   
     {  
     	appointmentService.addappointment(appointment);  
     return appointment.getId();  
