@@ -36,6 +36,7 @@ public class Appointment {
 	    private AppointmentType appointmentType;
 
 	    private String description;
+	    private Boolean payed;
 
 	    public Appointment() {
 	    }
