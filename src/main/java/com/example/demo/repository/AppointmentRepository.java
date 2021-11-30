@@ -16,6 +16,11 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	@Query("select a from Appointment as a where a.date between ?1 and ?2 and a.doctor.id = ?3")
     List<Appointment> findAllBetweenDatesByDoctorId(Date startDate, Date endDate, long doctorId);
 	
+	
+	@Query("select a from Appointment as a where a.payed = FALSE and a.payementType = 'ONLINEPAYEMENT'")
+	List<Appointment>findnotpayed();
+	
+	
 	/** Bech nlawjou 3le les rendez-vous bin date debut w date fin */
     @Query("select a from Appointment as a where a.date between ?1 and ?2")
     List<Appointment> findAllBetweenDates(Date startDate, Date endDate);
@@ -28,5 +33,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
 
     Appointment findOneByDateAndDoctorId(LocalDateTime reference_date, long doctorId);
+
 
 }

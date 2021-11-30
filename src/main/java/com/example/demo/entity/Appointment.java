@@ -37,6 +37,10 @@ public class Appointment {
 
 	    private String description;
 	    private Boolean payed;
+	    
+	    @Enumerated(value = EnumType.STRING)
+	    private PayementType payementType;
+
 
 	    public Appointment() {
 	    }

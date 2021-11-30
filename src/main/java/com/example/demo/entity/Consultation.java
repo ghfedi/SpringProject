@@ -19,7 +19,7 @@ public class Consultation {
 	private LocalDateTime datedebut;
 	private LocalDateTime datefin;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "appointment_id", referencedColumnName = "id") 
 	private Appointment appointment;
 	
