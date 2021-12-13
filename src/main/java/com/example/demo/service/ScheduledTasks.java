@@ -21,7 +21,7 @@ public class ScheduledTasks {
     private AppointmentRepository appointmentRepository;
 
 
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 18000000)
 	public void reportCurrentTime() {
 		List<Appointment> appointment = appointmentRepository.findnotpayed();
 		for  (Appointment a : appointment)   {

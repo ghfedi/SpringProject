@@ -1,12 +1,20 @@
 package com.example.demo.entity;
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 
 @Entity
 @Table (name="patients")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id" )
 public class Patient extends User{
 
 

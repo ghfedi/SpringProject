@@ -39,7 +39,7 @@ public class AppointmentService {
 		long doctorid = appointmentReservation.getDoctorId();
 		
 		Appointment reference_appointment = appointmentRepository.findOneByDateAndDoctorId(reference_date,doctorid);
-		System.out.println(reference_appointment);
+		System.err.println("ref"+reference_appointment);
 		 if (reference_appointment != null) {
 			 Patient patient = new Patient();
 			 patient.setId(appointmentReservation.getPatientId());
