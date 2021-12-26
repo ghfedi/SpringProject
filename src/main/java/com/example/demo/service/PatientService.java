@@ -12,6 +12,10 @@ public class PatientService {
 	
 	 private PatientRepository patientRepository;
 	 
+	 public List<Patient> getAllPatientByid(long id){
+	 return patientRepository.findAllById(id);
+	 }
+	 
 	 public List<Patient> getAllPatient(){
 			return patientRepository.findAll();
 			} 
