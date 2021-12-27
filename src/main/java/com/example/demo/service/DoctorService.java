@@ -14,7 +14,14 @@ public class DoctorService {
 	 public List<Doctor> getAllDoctor(){
 			return doctorRepository.findAll();
 			} 
+	 
+	 public List<Doctor> getSearchDoctor(String keyword){
+		 if (keyword != null) {
+			return doctorRepository.search(keyword);}
+		 return doctorRepository.findAll();
+			} 
 
+	 
 	public void adddoctor(Doctor doctor)   
 	{  
 		doctorRepository.save(doctor);  

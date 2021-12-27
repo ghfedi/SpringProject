@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +26,8 @@ public class Appointment {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private long id;
-
-	    private LocalDateTime date;
+	 	@DateTimeFormat(pattern = "dd/MM/yyyy h:mm")
+	    private Date date;
 	    @OneToOne(mappedBy = "appointment",cascade = CascadeType.REMOVE)
 	    private Consultation consultation;
 	    @ManyToOne

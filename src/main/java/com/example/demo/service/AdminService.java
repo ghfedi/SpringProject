@@ -11,14 +11,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AdminService {
 	 private DoctorRepository doctorRepository;
-	 public Doctor validateById(long id, Doctor doctor) {
+	 public Doctor validateById(long id) {
 			Doctor newdoctor = doctorRepository.findById(id).orElse(null);
 			
 			newdoctor.setEnabled(!newdoctor.isEnabled());
 			
 
 
-			return doctorRepository.save(doctor);
+			return doctorRepository.save(newdoctor);
 			}
 
 }

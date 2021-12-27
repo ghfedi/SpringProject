@@ -5,16 +5,25 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+
 @AllArgsConstructor
-@RestController
+@Controller
 public class AdminController {
 	
 	private AdminService adminService;
 	
-	@PutMapping("/admin/enable/{id}")
-	public Doctor updateDoctortById(@PathVariable int id,@RequestBody Doctor doctor) {
-	    return adminService.validateById(id, doctor);
+	@GetMapping("/admin/enable/{id}")
+	public String updateDoctortById(@PathVariable int id) {
+	     adminService.validateById(id);
+	     return "redirect:/admin/listdoctor";
 	    }
 
 
 }
+
+
+
