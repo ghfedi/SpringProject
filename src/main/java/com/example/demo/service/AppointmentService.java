@@ -42,7 +42,7 @@ public class AppointmentService {
 		System.err.println("ref"+reference_appointment);
 		 if (reference_appointment != null) {
 			 Patient patient = new Patient();
-			 patient.setId(appointmentReservation.getPatientId());
+			 patient.setId(2);
 			 reference_appointment.setAppointmentType(appointmentReservation.getAppointmentType());
 			 reference_appointment.setPatient(patient);
 			 appointmentRepository.save(reference_appointment);

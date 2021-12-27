@@ -15,6 +15,7 @@ import com.example.demo.entity.User;
 import com.example.demo.service.AdminService;
 import com.example.demo.service.DoctorService;
 import com.example.demo.service.PatientService;
+import com.example.demo.repository.AppointmentRepository;
 import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 
@@ -29,9 +30,20 @@ public class IndexCtrl {
 	private PatientService patientService;
 	private PatientRepository patientRepository;
 	private DoctorRepository doctorRepository;
+	private AppointmentRepository appointmentRepository;
 	@GetMapping({"/","/index"})
 	public String getIndex() {
 		return "index";
+	}
+	
+	@GetMapping({"/check"})
+	public String getCheck() {
+		return "checkout";
+	}
+	@GetMapping({"/book"})
+	public String getBook(Model model) {
+		model.addAttribute("listAppointment",appointmentRepository.findavailable() );
+		return "booking";
 	}
 	@GetMapping({"/admin/listdoctor"})
 	public String getDoctorList(Model model) {
@@ -56,7 +68,7 @@ public class IndexCtrl {
 	     
 		patientRepository.save(patient);
 	     
-	    return "login";
+	    return "redirect:/index";
 	}
 	@PostMapping("/process_edit")
 	public String processEdit(Doctor doctor) {

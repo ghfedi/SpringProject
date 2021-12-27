@@ -20,6 +20,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	@Query("select a from Appointment as a where a.payed = FALSE and a.payementType = 'ONLINEPAYEMENT'")
 	List<Appointment>findnotpayed();
 	
+	@Query("select a from Appointment as a where a.patient.id=NULL and a.doctor.id = 3")
+	List<Appointment>findavailable();
+	
 	
 	/** Bech nlawjou 3le les rendez-vous bin date debut w date fin */
     @Query("select a from Appointment as a where a.date between ?1 and ?2")

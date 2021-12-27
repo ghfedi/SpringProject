@@ -34,7 +34,7 @@ public class DoctorCtrl {
 	     appointment.setDoctor(doctor);
 		appointmentRepository.save(appointment);
 	     
-	    return "appointments";
+	    return "redirect:/doctordashboard";
 	}
 	@GetMapping({"/doctordashboard"})
 	public String getappointments(Model model) {
